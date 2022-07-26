@@ -5,9 +5,11 @@ This is an example of the [FloatingActionButton NuGet](https://github.com/cemozg
 In this example, we'll be be demonstrating how you can still use MVVM and navigate to a new Page via the FAB's menu buttons.
 
 ## What is does
+
 According to the author, _FAB is a button that will work on 'RootView' so you don't need set it to any page. If you want, you can add sub-elements and use it in 5 different ways._
 
 ### What it does not do
+
 Though this package still needs some work, I like where the author is heading!  Can't wait to see future releases.
 
 Currently, it does not support the following:
@@ -19,6 +21,7 @@ Currently, it does not support the following:
 * Navigating back creates additional menu-buttons
 
 ### Command Binding Workaround
+
 To get around this lack of functionality:
 1. Wire-up your ViewModel command as you normally would.
 2. Next, slap in the ``CanExecute()`` and ``Execute()`` in the *Click event* like so
@@ -46,11 +49,13 @@ To get around this lack of functionality:
 ```
 
 ## Specifications
-![](https://github.com/cemozguraA/Xamarin.RisePlugin.Floatingactionbutton/blob/master/Images/CircleDroidGroup.gif?raw=true)
-![](https://github.com/cemozguraA/Xamarin.RisePlugin.Floatingactionbutton/blob/master/Images/VerticalHorizDroid.gif?raw=true)
+
+![](https://github.com/DamianSuess/Learn.FloatingActionButton/blob/master/docs/CircleDroidGroup.gif?raw=true)
+![](https://github.com/DamianSuess/Learn.FloatingActionButton/blob/master/docs/VerticalHorizDroid.gif?raw=true)
 
 
 ### Platform Support
+
 As of v1.0.0, the following patforms are supported
 
 | Platforms  |
@@ -59,6 +64,7 @@ As of v1.0.0, the following patforms are supported
 | Android  |
 
 ### Properties
+
 | Property  | What it does |
 | ------------- | ------------|
 | Open  | Adding 'Mainbutton' to the rootview. |
@@ -75,16 +81,12 @@ As of v1.0.0, the following patforms are supported
 | HideSubView  | With animation |
 
 ### Nuget Package
+
 #### Step1
+
 Add the NuGet package to your solution.
 * [https://www.nuget.org/packages/Xamarin.RisePlugin.Floatingactionbutton](https://www.nuget.org/packages/Xamarin.RisePlugin.Floatingactionbutton)
 
-#### Step2 (iOS)
-
-You must add this line to your AppDelegate.cs before you use FloatingActionButton
-```csharp
-COAFloatingactionbutton.Init();
-```
 #### Step2 (ANDROID)
 You must add this code to your ``MainActivity.cs`` before you use FloatingActionButton
 
@@ -96,5 +98,9 @@ public override void SetContentView(Android.Views.View view)
 }
 ```
 
+#### Step2 (iOS)
 
-
+You must add this line to your AppDelegate.cs before you use FloatingActionButton
+```csharp
+COAFloatingactionbutton.Init();
+```
