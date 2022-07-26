@@ -1,4 +1,4 @@
-## Floating Action Button using Xamarin.Forms and Prism.Forms
+# Xamarin Floating Action Button with Prism.Forms MVVM
 
 This is an example of the [FloatingActionButton NuGet](https://github.com/cemozguraA/Xamarin.RisePlugin.Floatingactionbutton) using [Xamarin.Forms](https://dotnet.microsoft.com/apps/xamarin/xamarin-forms) and [Prism.Forms](https://github.com/PrismLibrary/Prism).
 
@@ -12,23 +12,24 @@ According to the author, _FAB is a button that will work on 'RootView' so you do
 
 Though this package still needs some work, I like where the author is heading!  Can't wait to see future releases.
 
-Currently, it does not support the following:
-* Does not support Command Binding to your ViewModel
-  * _Workaround provided in this sample_
-* Does not support Xamarin.Forms 4.8 - _Example uses v4.4_
-* Does not support Prism.Forms 8.0 - _Must use 7.2 or lower_
-* After navigating, the floating menu does not collapse
-* Navigating back creates additional menu-buttons
+Supported and unsupported features:
+
+* Does not support XAML definitions - _must use the `.xaml.cs` file_
+* Does not support Command Bindings to your ViewModel - _see, workaround provided in this sample_
+* Supports Xamarin.Forms 5.x
+* Supports Prism.Forms 8.1.97
 
 ### Command Binding Workaround
 
 To get around this lack of functionality:
-1. Wire-up your ViewModel command as you normally would.
-2. Next, slap in the ``CanExecute()`` and ``Execute()`` in the *Click event* like so
 
-**MainPage.xaml.cs**
+1. Wire-up your ViewModel command as you normally would.
+2. Next, slap in the ``CanExecute()`` and ``Execute()`` in the _Click event_ like so
+
+#### MainPage.xaml.cs
+
 ```cs
-    private void BtnSub4_ClickActionButton(object sender, EventArgs e)
+    private void BtnSub4_Click(object sender, EventArgs e)
     {
       MainPageViewModel viewModel = (MainPageViewModel)this.BindingContext;
       if (viewModel.CmdNavigatePage2.CanExecute())
@@ -38,7 +39,8 @@ To get around this lack of functionality:
     }
 ```
 
-**MainPageViewModel.cs**
+#### MainPageViewModel.cs
+
 ```cs
     public DelegateCommand CmdNavigatePage2 => new DelegateCommand(OnNavigatePage2);
 
@@ -50,9 +52,8 @@ To get around this lack of functionality:
 
 ## Specifications
 
-![](https://github.com/DamianSuess/Learn.FloatingActionButton/blob/master/docs/CircleDroidGroup.gif?raw=true)
-![](https://github.com/DamianSuess/Learn.FloatingActionButton/blob/master/docs/VerticalHorizDroid.gif?raw=true)
-
+![Circle Group](https://github.com/DamianSuess/Learn.FloatingActionButton/blob/master/docs/CircleDroidGroup.gif?raw=true)
+![Vertical and Horizontal group](https://github.com/DamianSuess/Learn.FloatingActionButton/blob/master/docs/VerticalHorizDroid.gif?raw=true)
 
 ### Platform Support
 
@@ -82,12 +83,12 @@ As of v1.0.0, the following patforms are supported
 
 ### Nuget Package
 
-#### Step1
-
 Add the NuGet package to your solution.
+
 * [https://www.nuget.org/packages/Xamarin.RisePlugin.Floatingactionbutton](https://www.nuget.org/packages/Xamarin.RisePlugin.Floatingactionbutton)
 
-#### Step2 (ANDROID)
+### Configure ANDROID
+
 You must add this code to your ``MainActivity.cs`` before you use FloatingActionButton
 
 ```csharp
@@ -98,9 +99,10 @@ public override void SetContentView(Android.Views.View view)
 }
 ```
 
-#### Step2 (iOS)
+### Configure iOS
 
 You must add this line to your AppDelegate.cs before you use FloatingActionButton
+
 ```csharp
 COAFloatingactionbutton.Init();
 ```

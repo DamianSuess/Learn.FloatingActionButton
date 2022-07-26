@@ -111,7 +111,6 @@ namespace App2
       _viewModel.Message = "Clicked Button 5";
     }
 
-
     private async void Btn_ClickActionButton(object sender, EventArgs e)
     {
       if (!COAFloatingactionbutton.Current.IsSubShowing)
