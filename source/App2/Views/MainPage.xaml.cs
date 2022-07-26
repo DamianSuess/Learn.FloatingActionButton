@@ -12,16 +12,27 @@ namespace App2
   [DesignTimeVisible(false)]
   public partial class MainPage : ContentPage
   {
+    private MainPageViewModel _viewModel;
     public MainPage()
     {
       InitializeComponent();
-      // Wireup();
+    }
 
+    protected override void OnDisappearing()
+    {
+      base.OnDisappearing();
+
+      // Close and clear since we're transiting away.
+      COAFloatingactionbutton.Current.Close();
+      COAFloatingactionbutton.Current.SubViews.Clear();
     }
 
     protected override void OnAppearing()
     {
       Wireup();
+
+      // Must wire-up binding here for Prism's AutowireViewModel to kick in.
+      _viewModel = (MainPageViewModel)this.BindingContext;
     }
 
     private void Wireup()
@@ -34,12 +45,13 @@ namespace App2
       var btnSub3 = new ActionButtonView() { BackgroundColor = Color.OrangeRed, HeightRequest = 50, SelectedColor = Color.Pink, Icon = "logo.png" };
       var btnSub4 = new ActionButtonView() { BackgroundColor = Color.Maroon, HeightRequest = 50, SelectedColor = Color.Pink, Icon = "logo.png" };
       var btnSub5 = new ActionButtonView() { BackgroundColor = Color.Lime, HeightRequest = 50, SelectedColor = Color.Pink, Icon = "logo.png" };
-      var btnSub6 = new ActionButtonView() { BackgroundColor = Color.LightGreen, SelectedColor = Color.Pink, Icon = "logo.png" };
+      // var btnSub6 = new ActionButtonView() { BackgroundColor = Color.LightGreen, SelectedColor = Color.Pink, Icon = "logo.png" };
 
       btnSub1.Click += BtnSub1_Click;
       btnSub2.Click += BtnSub2_Click;
       btnSub3.Click += BtnSub3_Click;
       btnSub4.Click += BtnSub4_Click;
+      btnSub5.Click += BtnSub5_Click;
 
       btnSub1.LongClick += BtnSub1_LongClick;
 
@@ -60,32 +72,45 @@ namespace App2
     private void BtnSub1_LongClick(object sender, EventArgs e)
     {
       // Initiate long-click
+      _viewModel.Message = "Long-Pressed Button 1";
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Center;
     }
 
     private void BtnSub1_Click(object sender, EventArgs e)
     {
+      _viewModel.Message = "Clicked Button 1";
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Center;
     }
 
     private void BtnSub2_Click(object sender, EventArgs e)
     {
+      _viewModel.Message = "Clicked Button 2";
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Right;
     }
 
     private void BtnSub3_Click(object sender, EventArgs e)
     {
+      _viewModel.Message = "Clicked Button 3";
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Left;
     }
 
     private void BtnSub4_Click(object sender, EventArgs e)
     {
+      _viewModel.Message = "Clicked Button 4";
+
+      // Wire-up to ViewModel
       MainPageViewModel viewModel = (MainPageViewModel)this.BindingContext;
       if (viewModel.CmdNavigatePage2.CanExecute())
       {
         viewModel.CmdNavigatePage2.Execute();
       }
     }
+
+    private void BtnSub5_Click(object sender, EventArgs e)
+    {
+      _viewModel.Message = "Clicked Button 5";
+    }
+
 
     private async void Btn_ClickActionButton(object sender, EventArgs e)
     {

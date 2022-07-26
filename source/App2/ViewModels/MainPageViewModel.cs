@@ -6,6 +6,8 @@ namespace App2.ViewModels
 {
   public class MainPageViewModel : ViewModelBase
   {
+    private string _message;
+
     public MainPageViewModel(INavigationService nav) : base(nav)
     {
       Title = "Main Page";
@@ -16,6 +18,12 @@ namespace App2.ViewModels
     private async void OnNavigatePage2()
     {
       await NavigationService.NavigateAsync(nameof(ContentPage2));
+    }
+
+    public string Message
+    {
+      get => _message;
+      set => SetProperty(ref _message, value);
     }
   }
 }

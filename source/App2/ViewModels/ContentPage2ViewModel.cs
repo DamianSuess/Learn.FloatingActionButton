@@ -6,7 +6,7 @@ namespace App2.ViewModels
   {
     public ContentPage2ViewModel(INavigationService nav) : base(nav)
     {
-      Title = "Main Page";
+      Title = "Sub Page 1";
     }
   }
 }
