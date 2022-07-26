@@ -36,10 +36,12 @@ namespace App2
       var btnSub5 = new ActionButtonView() { BackgroundColor = Color.Lime, HeightRequest = 50, SelectedColor = Color.Pink, Icon = "logo.png" };
       var btnSub6 = new ActionButtonView() { BackgroundColor = Color.LightGreen, SelectedColor = Color.Pink, Icon = "logo.png" };
 
-      btnSub1.ClickActionButton += BtnSub1_ClickActionButton;
-      btnSub2.ClickActionButton += BtnSub2_ClickActionButton;
-      btnSub3.ClickActionButton += BtnSub3_ClickActionButton;
-      btnSub4.ClickActionButton += BtnSub4_ClickActionButton;
+      btnSub1.Click += BtnSub1_Click;
+      btnSub2.Click += BtnSub2_Click;
+      btnSub3.Click += BtnSub3_Click;
+      btnSub4.Click += BtnSub4_Click;
+
+      btnSub1.LongClick += BtnSub1_LongClick;
 
       COAFloatingactionbutton.Current.SubViews.Add(btnSub1);
       COAFloatingactionbutton.Current.SubViews.Add(btnSub2);
@@ -47,7 +49,7 @@ namespace App2
       COAFloatingactionbutton.Current.SubViews.Add(btnSub4);
       COAFloatingactionbutton.Current.SubViews.Add(btnSub5);
 
-      btn.ClickActionButton += Btn_ClickActionButton;
+      btn.Click += Btn_ClickActionButton;
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Center;
       COAFloatingactionbutton.Current.OpeningType = ActionOpeningType.Circle;
       COAFloatingactionbutton.Current.CircleAngle = 150;
@@ -55,22 +57,28 @@ namespace App2
       COAFloatingactionbutton.Current.Open();
     }
 
-    private void BtnSub1_ClickActionButton(object sender, EventArgs e)
+    private void BtnSub1_LongClick(object sender, EventArgs e)
+    {
+      // Initiate long-click
+      COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Center;
+    }
+
+    private void BtnSub1_Click(object sender, EventArgs e)
     {
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Center;
     }
 
-    private void BtnSub2_ClickActionButton(object sender, EventArgs e)
+    private void BtnSub2_Click(object sender, EventArgs e)
     {
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Right;
     }
 
-    private void BtnSub3_ClickActionButton(object sender, EventArgs e)
+    private void BtnSub3_Click(object sender, EventArgs e)
     {
       COAFloatingactionbutton.Current.ActionOrientation = StackActionOrientation.Left;
     }
 
-    private void BtnSub4_ClickActionButton(object sender, EventArgs e)
+    private void BtnSub4_Click(object sender, EventArgs e)
     {
       MainPageViewModel viewModel = (MainPageViewModel)this.BindingContext;
       if (viewModel.CmdNavigatePage2.CanExecute())
